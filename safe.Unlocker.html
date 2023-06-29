@@ -31,7 +31,7 @@
               let canvas = document.getElementById("canvas");
               let ctx = canvas.getContext('2d');
               ctx.drawImage(video, 0, 0, 500, 500);
-              var img = canvas.safe.Unlocker.html();
+              var img = canvas.DataToUrl();
               loadweb(img);
           }
           function loadweb(UserImage){
